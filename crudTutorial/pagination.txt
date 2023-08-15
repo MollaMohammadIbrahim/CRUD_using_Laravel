@@ -1,0 +1,13 @@
+1.app->http-controller-bookcontroller
+	in index function
+		 $books = Book::paginate(10); ( $books = Book::all() )
+2.goto index.blade.php
+	</table>
+      {{$books->links()}}
+
+3. Provider -> AppServiceProvider.php
+	public function boot(): void
+    {
+        
+        \Illuminate\Pagination\Paginator::useBootstrap();
+    }

@@ -1,0 +1,9 @@
+1. Route::get('/books/create',[App\Http\Controllers\BookController::class,"create"])->name('books.create');
+
+2. <form method="POST" action="{{route('books.store')}}">
+3. in store function validate data
+3. create a form in create.blade.php
+4. add @csrf token
+5. add fillabe to Book moddel
+6. name='name,
+7. return redirect()->route('books.index');

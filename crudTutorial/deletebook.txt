@@ -1,0 +1,18 @@
+1.view-> index.blade.php (below edit button)
+
+    <form action="{{route('books.destroy',['book'=>$book])}}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+2.route:
+
+Route::delete('/books/{book}',[App\Http\Controllers\BookController::class,"destroy"])->name('books.destroy');
+
+3.BookController
+
+	public function destroy(Book $book) {
+        	$book->delete();
+        	return redirect()->route('books.index');
+    	}

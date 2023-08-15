@@ -1,0 +1,18 @@
+1. create a route to view all books
+	routes->web.php
+		Route::get('/books',[App\Http\Controllers\BookController::class,"index"])->name('books.index');
+
+2.Book Controller
+	create function called index() , return view('books.index',['books'=>$books]);
+
+3. Create view and layouts
+	a.layouts -> main.blade.php
+		<div class="container">
+        		@yield('content')
+    		</div>
+	b. books->index.blade.php
+		@extends('layouts.main')
+		@section('content')
+		@endsection
+
+4.create add book, eidt, delete button

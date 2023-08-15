@@ -1,0 +1,29 @@
+a. making seeder
+--------------------------
+1. Create a factory for a model
+	php artisan make:factory BookFactory --model=Book
+2. Create a seeder 
+	php artisan make:seeder BookSeeder
+3.Open BookFactory (database->factory->BookFactory)
+	go to definition() -> return and write below code:
+	return [
+        'title' => fake()->sentence(4),
+        'author' => fake()->name(),
+        'isbn' => fake()->isbn13(),
+        'price' => fake()->numberBetween(10, 1000),
+        ];
+4.(database->seeders->BookSeeder)
+	
+	in run function
+		\App\Models\Book::factory()->count(500)->create();
+5. go to databaseSeeder
+	use Database\Seeders\BookSeeder; 
+	in run function	 
+		$this->call(BookSeeder::class);
+6. to run the seeder
+	php artisan db:seed
+
+if db driver is not found (pdo, pdo_mysql)
+	open c/php/php.ini
+		extension=pdo_mysql
+		extension=pdo_sqlite

@@ -1,0 +1,33 @@
+1.Route
+
+	Route::post('/books',[App\Http\Controllers\BookController::class,"store"])->name('books.store');
+	Route::get('/books/create',[App\Http\Controllers\BookController::class,"create"])->name('books.create');
+2. view
+	<form method="POST" action="{{route("books.store")}}">
+		@csrf
+
+3. controller
+	public function create(){
+        	return view('books.create');
+    	}
+    ---------------------------------------------
+	
+	public function store(Request $request){
+
+        $validatedData = $request->validate([
+            'title' => 'required | string',
+            'author' => 'required |string',
+            'isbn' => 'required |string',
+            'price' => 'required | string',
+
+        ]);
+        Book::create([
+            'title'=>$request->title,
+            'author'=>$request->author,
+            'isbn'=>$request->isbn,
+            'price'=>$request->price,
+
+        ]);
+
+        return redirect()->route('books.index');
+    }

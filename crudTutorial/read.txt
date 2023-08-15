@@ -1,0 +1,9 @@
+1.route
+	Route::get('/books',[App\Http\Controllers\BookController::class,"index"])->name('books.index');
+2.controller
+	 public function index(){
+        $books = Book::all();
+        return view('books.index',['books'=>$books]);
+    	}
+
+3.view
